@@ -1,0 +1,59 @@
+/* styleadmin.css */
+
+/* Styles pour la classe "container" */
+.container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    padding-bottom: 60px;
+    text-align: center;
+    background-color: #f0f0f0; /* Couleur de fond pour illustrer */
+}
+
+/* Styles pour la classe "content" */
+.content {
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.content h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+.container .content  h3 span{
+    background: crimson;
+    color: #fff;
+    border-radius: 5px;
+    padding:0 15px;
+}
+
+.container .content h1 {
+    font-size: 50px;
+    margin-bottom: 20px;
+color:#333;
+}
+
+ .container .content p {
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+/* Styles pour les liens "btn" */
+.btn {
+    display: inline-block;
+    padding: 10px 30px;
+    background: #333; /* Couleur de fond du bouton */
+    color: #fff; /* Couleur du texte du bouton */
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background: crimson; /* Couleur de fond du bouton au survol */
+}
+
+/* Ajoutez d'autres règles CSS au besoin */
