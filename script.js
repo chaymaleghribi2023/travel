@@ -53,9 +53,7 @@ loadMoreBtn.onclick = () => {
   }
 };
 
-
-
-    // Fonction pour afficher le bouton "Mettre à jour"
+// Fonction pour afficher le bouton "Mettre à jour"
     function showUpdateButton() {
         document.getElementById('updateButton').style.display = 'block';
     }
