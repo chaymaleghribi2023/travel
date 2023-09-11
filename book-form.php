@@ -68,7 +68,7 @@ if (isset($_POST['send'])) {
     }
 } 
 
-if (isset($_POST['read'])) {
+/*if (isset($_POST['read'])) {
     // Récupérer les données de la base de données
     $sql = "SELECT id, name, firstname, email, phone, address, location, guests, arrivals, leaving FROM bookform";
     $result = $conn->query($sql);
@@ -113,7 +113,36 @@ echo '</form></td>';
     } else {
         echo "Aucune donnée trouvée dans la base de données.";
     }
+}*/
+$sql = "SELECT * FROM bookform";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // Afficher les données sous forme de tableau HTML
+    echo "<table>";
+    echo "<tr><th>ID</th><th>Nom</th><th>Prénom</th><th>Email</th><th>Téléphone</th><th>Adresse</th><th>Location</th><th>Invités</th><th>Arrivées</th><th>Départs</th><th>action</th></tr>";
+    
+    while ($row = $result->fetch_assoc()) {
+        echo "<tr>";
+        echo "<td>" . $row["id"] . "</td>";
+        echo "<td>" . $row["name"] . "</td>";
+        echo "<td>" . $row["firstname"] . "</td>";
+        echo "<td>" . $row["email"] . "</td>";
+        echo "<td>" . $row["phone"] . "</td>";
+        echo "<td>" . $row["address"] . "</td>";
+        echo "<td>" . $row["location"] . "</td>";
+        echo "<td>" . $row["guests"] . "</td>";
+        echo "<td>" . $row["arrivals"] . "</td>";
+        echo "<td>" . $row["leaving"] . "</td>";
+        echo '<td><a href="updatebook.php?id=' . $row["id"] . '">Update</a> | <a href="deletebook.php?id=' . $row["id"] . '" class="delete-link">Delete</a></td>';
+        echo "</tr>";
+    }
+    
+    echo "</table>";
+} else {
+    echo "Aucun enregistrement trouvé.";
 }
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update"])) {
 

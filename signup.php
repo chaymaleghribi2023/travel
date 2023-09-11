@@ -92,39 +92,51 @@ if ($conn->connect_error) {
 }
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = stripcslashes(strtolower($_POST["username"]));
-    $email =stripcslashes(strtolower( $_POST["email"]));
-    $password =stripcslashes(strtolower( $_POST["password"]));
+    $email = stripcslashes(strtolower($_POST["email"]));
+    $password = stripcslashes(strtolower($_POST["password"]));
     $confirmpassword = stripcslashes(strtolower($_POST["confirmpassword"]));
     $accounttype = $_POST["accounttype"];
 
-    // Perform validation and insert the data into the database
-    // You should also handle error cases.
-}
-// Basic validation
-if (empty($username) || empty($email) || empty($password) || empty($confirmpassword) || empty($accounttype)) {
-    echo "Please fill in all fields.";
-} elseif ($password !== $confirmpassword) {
-    echo "Passwords do not match.";
-} else {
-    // All validation checks passed, insert data into the database
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT); // Hash the password for security
-
-    $sql = "INSERT INTO users (username, email, password, confirmpassword, accounttype) VALUES (?, ?, ?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-
-    if ($stmt) {
-        $stmt->bind_param("sssss", $username, $email, $hashedPassword, $confirmpassword, $accounttype);
-        if ($stmt->execute()) {
-            echo "<script> alert('User added successfully!')</script>";
-        } else {
-            echo "Error: " . $stmt->error;
-        }
-        $stmt->close();
+    // Basic validation
+    if (empty($username) || empty($email) || empty($password) || empty($confirmpassword) || empty($accounttype)) {
+        echo "Please fill in all fields.";
+    } elseif ($password !== $confirmpassword) {
+        echo "Passwords do not match.";
     } else {
-        echo "<script> alert('Error preparing SQL statement:')</script> " . $conn->error;
+        // Check if the email already exists in the database
+        $emailCheckQuery = "SELECT id FROM users WHERE email = ?";
+        $stmt = $conn->prepare($emailCheckQuery);
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $stmt->store_result();
+
+        if ($stmt->num_rows > 0) {
+            echo "Email address is already in use. Please use a different email.";
+        } else {
+            // All validation checks passed, insert data into the database
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT); // Hash the password for security
+
+            $sql = "INSERT INTO users (username, email, password, confirmpassword, accounttype) VALUES (?, ?, ?, ?, ?)";
+            $stmt = $conn->prepare($sql);
+
+            if ($stmt) {
+                $stmt->bind_param("sssss", $username, $email, $hashedPassword, $confirmpassword, $accounttype);
+                if ($stmt->execute()) {
+                    echo "<script> alert('User added successfully!')</script>";
+                } else {
+                    echo "Error: " . $stmt->error;
+                }
+                $stmt->close();
+            } else {
+                echo "<script> alert('Error preparing SQL statement:')</script> " . $conn->error;
+            }
+        }
+
+        $stmt->close();
     }
 }
 ?>
+
     </div>
     <section class="footer">
         <div class="box-container">

@@ -792,3 +792,50 @@ padding: 5px 10px;
    font-size: 30px; 
    color:#0333
 }
+/* styleadmin.css */
+
+/* Styles pour le formulaire de mise à jour */
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #151515;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 3px;
+}
+
+.btn:hover {
+    background-color: #b30009;
+}
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc; /* Définissez la bordure */
+    background-color: #f9f9f9;
+    border-radius: 5px; /* Ajoutez des coins arrondis */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ajoutez une ombre légère */
+}
