@@ -25,6 +25,7 @@ if (isset($_SESSION["username"])) {
         <a href="login.php" class="btn">Login</a>
         <a href="signup.php" class="btn">Sign Up</a>
         <a href="admin.php" class="btn">book_admin</a>
+        <a href="aficheruser.php">lister user</a>
     
     </div>
 </div>

@@ -22,7 +22,7 @@
         
             <a href="login.php">login</a>
             <a href="signup.php">sign up</a>
-            <a href="aficheruser.php">lister user</a>
+         
             
 
            
